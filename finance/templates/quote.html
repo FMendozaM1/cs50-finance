@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+<form action="/quote" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Symbol of stock" type="text">
+         <button class="btn btn-primary" type="submit">lookup</button>
+    </div>
+
+</form>
+
+{% if stock %}
+<div class="table-responsive">
+<table class="table table-striped table-hover table-bordered align-middle shadow-sm">
+         <thead class="table-primary text-center">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td> {{stock['name']}} </td>
+                    <td> {{stock['price']  | usd }} </td>
+                    <td> {{stock['symbol']}} </td>
+                </tr>
+
+        </tbody>
+</table>
+</div>
+{% endif %}
+
+{% endblock %}

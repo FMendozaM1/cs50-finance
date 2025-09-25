@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<form action="/sell" method="post">
+    <div class="d-flex justify-content-center mb-3" style="gap: 5px;">
+        <!-- Select de stock -->
+        <select name="symbol" class="form-control" required style="width: 150px;">
+            <option disabled selected value="">Choose stock</option>
+            {% for stock in stocks %}
+            <option value="{{ stock.symbol }}">{{ stock.symbol }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Número de shares -->
+        <input autocomplete="off" class="form-control" name="shares" placeholder="Shares" type="number" style="width: 120px;">
+
+        <!-- Botón de sell -->
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </div>
+</form>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div>{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% endblock %}
